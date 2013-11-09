@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{820A23FA-C7C5-D127-451A-7BCD629E394D}</ProjectGuid>
+	<ProjectGuid>{6791735C-A722-9537-8237-AFDA8220D2CF}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -48,6 +48,10 @@
      <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.js" />
      <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\SmoothLookAt.js" />
      <Compile Include="Assets\Standard Assets\Scripts\General Scripts\DragRigidbody.js" />
+     <None Include="Assets\TiledTilemaps\Examples\Tilemaps\platformer.xml" />
+     <None Include="Assets\TiledTilemaps\Examples\Tilemaps\platformerMultipleTilesets.xml" />
+     <None Include="Assets\TiledTilemaps\Examples\Tilemaps\big.xml" />
+     <None Include="Assets\TiledTilemaps\Examples\Tilemaps\desert.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -25,30 +25,36 @@ function Update () {
 	// uses a raycast 1/2 the width of the sprite and checks for collisions.  If returns false, create a vector in that direction
 	// right
 	if (Input.GetAxis("Horizontal") > 0){
-		if (!Physics.Raycast(transform.position+Vector3(0,.5,0),Vector3(1,0,0),.55) && !Physics.Raycast(transform.position+Vector3(0,-.5,0),Vector3(1,0,0),.55)){
+		if (!Physics.Raycast(transform.position+Vector3(0,0,0),Vector3(1,0,0),.55) && !Physics.Raycast(transform.position+Vector3(0,-.5,0),Vector3(1,0,0),.55)){
 			transform.Translate(Vector3(1 * speed * Time.deltaTime,0,0));
 		} else DetectCollision();
 		
 		// update directional variables
 		right = 1;
 		left = 0;
+		
+		// turn sprite
+		renderer.material.mainTextureScale = new Vector2(1,-1);
 	}
 	
 	// left
 	if (Input.GetAxis("Horizontal") < 0){
-		if (!Physics.Raycast(transform.position+Vector3(0,.5,0),Vector3(-1,0,0),.55) && !Physics.Raycast(transform.position+Vector3(0,-.5,0),Vector3(-1,0,0),.55)){
+		if (!Physics.Raycast(transform.position+Vector3(0,0,0),Vector3(-1,0,0),.55) && !Physics.Raycast(transform.position+Vector3(0,-.5,0),Vector3(-1,0,0),.55)){
 			transform.Translate(Vector3(-1 * speed * Time.deltaTime,0,0));
 		} else DetectCollision();
 		
 		// update directional variables
 		left = 1;
 		right = 0;
+		
+		// turn sprite 
+		renderer.material.mainTextureScale = new Vector2(-1,-1);
 	}
 	
 	//     MOVE Y
 	// up
 	if (Input.GetAxis("Vertical") > 0){
-		if (!Physics.Raycast(transform.position+Vector3(.5,0,0),Vector3(0,1,0),.55) && !Physics.Raycast(transform.position+Vector3(-.5,0,0),Vector3(0,1,0),.55)){
+		if (!Physics.Raycast(transform.position+Vector3(.5,-.5,0),Vector3(0,1,0),.55) && !Physics.Raycast(transform.position+Vector3(-.5,-.5,0),Vector3(0,1,0),.55)){
 			transform.Translate(Vector3(0,1 * speed * Time.deltaTime,0));
 		} else DetectCollision();
 		
