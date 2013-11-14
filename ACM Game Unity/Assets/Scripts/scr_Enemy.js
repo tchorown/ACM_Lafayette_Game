@@ -26,8 +26,17 @@ function Start () {
 }
 
 function Update () {
+	// check for collisions
+	// check x
+	if (reverseX()) {
+		xSpeed = -xSpeed;
+	}
+	// check y
+	if (reverseY()){
+		ySpeed = -ySpeed;
+	}
 	// move
-	transform.Translate(Vector3(xSpeed * Time.deltaTime,ySpeed * Time.deltaTime,0));
+	transform.Translate(Vector2(xSpeed * Time.deltaTime,ySpeed * Time.deltaTime));
 	
 	
 	// die if health is below 1
@@ -39,10 +48,30 @@ function Update () {
 	}
 }
 
-function OnCollisionEnter(col : Collision){
+// checks for X collision, returns boolean
+function reverseX(){
+	if ((Physics2D.Raycast(transform.position+Vector2(0,0),Vector2(-1,0),.55) && Physics2D.Raycast(transform.position+Vector2(0,-.5),Vector2(-1,0),.55)) || // left
+			(Physics2D.Raycast(transform.position+Vector2(0,0),Vector2(1,0),.55) && Physics2D.Raycast(transform.position+Vector2(0,-.5),Vector2(1,0),.55))) { // right
+				Debug.Log("Much reversal so X");
+				return true;
+			} else return false;
+}
+
+// checks for Y collision, returns boolean
+function reverseY(){
+	if ((Physics2D.Raycast(transform.position+Vector2(.5,0),Vector2(0,1),.55) && Physics2D.Raycast(transform.position+Vector2(-.5,0),Vector2(0,1),.55)) // up
+	 || (Physics2D.Raycast(transform.position+Vector2(.5,0),Vector2(0,-1),.55) && Physics2D.Raycast(transform.position+Vector2(-.5,0),Vector2(0,-1),.55))){  // down
+		Debug.Log("Much reversal so Y");
+		return true;
+	} else return false;
+}
+
+function OnCollisionEnter2D(col : Collision2D){
 	Debug.Log("Such hit");
 	// save the collision
 	collided_with = col.gameObject;
+	
+	Debug.Log("Wow collision");
 	
 	// read tag of collision
 	switch (collided_with.tag) {
@@ -52,11 +81,11 @@ function OnCollisionEnter(col : Collision){
 			Destroy(collided_with);
 			break;
 	
-		case "FullCollision":
+		/*case "FullCollision":
 			// reverses speed
 			xSpeed = -xSpeed;
 			ySpeed = -ySpeed;
 			Debug.Log("Such detected");
-			break;
+			break;*/
 	}
 }

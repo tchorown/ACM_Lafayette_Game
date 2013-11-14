@@ -17,7 +17,7 @@ function Start (){
 	vertDir = playerScript.up - playerScript.down;
 	
 	// use directional values to move the bullet just off the edge of the player.  This way, it won't be created at the player's origin.
-	transform.Translate(Vector3(.75*horizDir,.75*vertDir,0));
+	transform.Translate(Vector2(.75*horizDir,.75*vertDir));
 	
 	// self-destruct after 1 second.  "gameObject" refers to the object assosiated with this script
 	Destroy(gameObject,1);
@@ -25,7 +25,7 @@ function Start (){
 
 function Update () {
 	// move at the given speed in a certain direction
-	transform.Translate(Vector3(horizDir*speed * Time.deltaTime,vertDir*speed * Time.deltaTime,0));
+	transform.Translate(Vector2(horizDir*speed * Time.deltaTime,vertDir*speed * Time.deltaTime));
 }
 
 // destroy on collision
