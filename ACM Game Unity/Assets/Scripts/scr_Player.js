@@ -54,7 +54,7 @@ function Update () {
 	//     MOVE Y
 	// up
 	if (Input.GetAxis("Vertical") > 0){
-		if (!Physics.Raycast(transform.position+Vector3(.5,-.5,0),Vector3(0,1,0),.55) && !Physics.Raycast(transform.position+Vector3(-.5,-.5,0),Vector3(0,1,0),.55)){
+		if (!Physics.Raycast(transform.position+Vector3(.5,0,0),Vector3(0,1,0),.55) && !Physics.Raycast(transform.position+Vector3(-.5,0,0),Vector3(0,1,0),.55)){
 			transform.Translate(Vector3(0,1 * speed * Time.deltaTime,0));
 		} else DetectCollision();
 		

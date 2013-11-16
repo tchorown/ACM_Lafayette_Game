@@ -135,6 +135,7 @@ public class TiledTilemaps : MonoBehaviour
 	
     void Start()
     {
+		_targetSize = Screen.height;
     }
 
     void ImportTiledXML()
