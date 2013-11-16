@@ -2,6 +2,10 @@
 var speed : int;
 var xDir : int;
 var yDir : int;
+enum Source { Player, Ally, Enemy, Environment } // specifies the source
+var damageSource : Source;
+var attack : int; // likelyhood that the bulelt will hit
+var damage : int; // damage of bullet
 var player : GameObject;
 var playerScript : scr_Player;
 var collided_with : GameObject; // detects collisions
@@ -17,7 +21,7 @@ function Start (){
 	vertDir = playerScript.up - playerScript.down;
 	
 	// use directional values to move the bullet just off the edge of the player.  This way, it won't be created at the player's origin.
-	transform.Translate(Vector3(.75*horizDir,.75*vertDir,0));
+	transform.Translate(Vector2(.75*horizDir,.75*vertDir));
 	
 	// self-destruct after 1 second.  "gameObject" refers to the object assosiated with this script
 	Destroy(gameObject,1);
@@ -25,11 +29,11 @@ function Start (){
 
 function Update () {
 	// move at the given speed in a certain direction
-	transform.Translate(Vector3(horizDir*speed * Time.deltaTime,vertDir*speed * Time.deltaTime,0));
+	transform.Translate(Vector2(horizDir*speed * Time.deltaTime,vertDir*speed * Time.deltaTime));
 }
 
 // destroy on collision
-function OnCollisionEnter(col : Collision){
+function OnCollisionEnter2D(col : Collision2D){
 	Debug.Log("Much bullets very collide!");
 	// save the collision
 	collided_with = col.gameObject;

@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\scr_Player.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\scr_Enemy.js">
     <Files>
-      <File FileName="Assets\Scripts\scr_Player.js" Line="74" Column="10" />
-      <File FileName="Assets\Scripts\scr_FitMaterial.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\scr_Enemy.js" Line="68" Column="79" />
+      <File FileName="Assets\Scripts\scr_Player.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\scr_Bullet.js" Line="17" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
