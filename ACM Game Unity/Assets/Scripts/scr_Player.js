@@ -25,8 +25,8 @@ function Update () {
 	// uses a raycast 1/2 the width of the sprite and checks for collisions.  If returns false, create a vector in that direction
 	// right
 	if (Input.GetAxis("Horizontal") > 0){
-		if (!Physics.Raycast(transform.position+Vector3(0,0,0),Vector3(1,0,0),.55) && !Physics.Raycast(transform.position+Vector3(0,-.5,0),Vector3(1,0,0),.55)){
-			transform.Translate(Vector3(1 * speed * Time.deltaTime,0,0));
+		if (!Physics2D.Raycast(transform.position+Vector2(0,0),Vector2(1,0),.55) && !Physics2D.Raycast(transform.position+Vector2(0,-.5),Vector2(1,0),.55)){
+			transform.Translate(Vector2(1 * speed * Time.deltaTime,0));
 		} else DetectCollision();
 		
 		// update directional variables
@@ -39,8 +39,8 @@ function Update () {
 	
 	// left
 	if (Input.GetAxis("Horizontal") < 0){
-		if (!Physics.Raycast(transform.position+Vector3(0,0,0),Vector3(-1,0,0),.55) && !Physics.Raycast(transform.position+Vector3(0,-.5,0),Vector3(-1,0,0),.55)){
-			transform.Translate(Vector3(-1 * speed * Time.deltaTime,0,0));
+		if (!Physics2D.Raycast(transform.position+Vector2(0,0),Vector2(-1,0),.55) && !Physics2D.Raycast(transform.position+Vector2(0,-.5),Vector2(-1,0),.55)){
+			transform.Translate(Vector2(-1 * speed * Time.deltaTime,0));
 		} else DetectCollision();
 		
 		// update directional variables
@@ -54,8 +54,8 @@ function Update () {
 	//     MOVE Y
 	// up
 	if (Input.GetAxis("Vertical") > 0){
-		if (!Physics.Raycast(transform.position+Vector3(.5,0,0),Vector3(0,1,0),.55) && !Physics.Raycast(transform.position+Vector3(-.5,0,0),Vector3(0,1,0),.55)){
-			transform.Translate(Vector3(0,1 * speed * Time.deltaTime,0));
+		if (!Physics2D.Raycast(transform.position+Vector2(.5,-.5),Vector2(0,1),.55) && !Physics2D.Raycast(transform.position+Vector2(-.5,-.5),Vector2(0,1),.55)){
+			transform.Translate(Vector2(0,1 * speed * Time.deltaTime));
 		} else DetectCollision();
 		
 		// update directional variables
@@ -65,8 +65,8 @@ function Update () {
 	
 	// down
 	if (Input.GetAxis("Vertical") < 0){
-		if (!Physics.Raycast(transform.position+Vector3(.5,0,0),Vector3(0,-1,0),.55) && !Physics.Raycast(transform.position+Vector3(-.5,0,0),Vector3(0,-1,0),.55)){
-			transform.Translate(Vector3(0,-1 * speed * Time.deltaTime,0));
+		if (!Physics2D.Raycast(transform.position+Vector2(.5,0),Vector2(0,-1),.55) && !Physics2D.Raycast(transform.position+Vector2(-.5,0),Vector2(0,-1),.55)){
+			transform.Translate(Vector2(0,-1 * speed * Time.deltaTime));
 		} else DetectCollision();
 		
 		// update directional variables
@@ -90,7 +90,7 @@ function Update () {
 	if (Input.GetAxis("FireBullet")){
 	 	if (Time.time >= nextShot){
 	 		// create an instance of the bullet
-	 		Instantiate(bullet_pref,Vector3(transform.position.x,transform.position.y,0),Quaternion.identity);
+	 		Instantiate(bullet_pref,Vector2(transform.position.x,transform.position.y),Quaternion.identity);
 	 		
 	 		// prevent the player from firing again immediately
 	 		nextShot = Time.time + fireRate;
