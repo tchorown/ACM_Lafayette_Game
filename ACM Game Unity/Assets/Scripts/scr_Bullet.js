@@ -2,6 +2,10 @@
 var speed : int;
 var xDir : int;
 var yDir : int;
+enum Source { Player, Ally, Enemy, Environment } // specifies the source
+var damageSource : Source;
+var attack : int; // likelyhood that the bulelt will hit
+var damage : int; // damage of bullet
 var player : GameObject;
 var playerScript : scr_Player;
 var collided_with : GameObject; // detects collisions
