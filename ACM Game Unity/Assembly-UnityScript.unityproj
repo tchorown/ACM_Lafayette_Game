@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Unity Install/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Unity Install/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +52,9 @@
      <Compile Include="Assets\Scripts\scr_Enemy.js" />
      <Compile Include="Assets\Scripts\scr_FitMaterial.js" />
      <Compile Include="Assets\Scripts\scr_FloorScript.js" />
+     <Compile Include="Assets\Scripts\scr_Pathfinding.js" />
      <Compile Include="Assets\Scripts\scr_Player.js" />
+     <Compile Include="Assets\guiScript.js" />
      <None Include="Assets\TiledTilemaps\Examples\Tilemaps\platformer.xml" />
      <None Include="Assets\TiledTilemaps\Examples\Tilemaps\platformerMultipleTilesets.xml" />
      <None Include="Assets\TiledTilemaps\Examples\Tilemaps\big.xml" />
