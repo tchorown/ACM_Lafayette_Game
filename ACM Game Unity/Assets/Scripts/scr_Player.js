@@ -6,6 +6,12 @@ var bullet_pref : Transform; // prefab used for bullets
 var fireRate : float = .5;
 var nextShot : float = 0.0;
 var moveForce : float = 365f; // determines force added
+var range : int;
+var attack : int;
+var attackSpeed : int;
+var damage : int; // the ammount of damage done by this actor
+var armor : int; // resistance to damage
+var vision : int; // how far this actor can see
 
 // for determining the direction of a bullet
 public var left : int;
@@ -13,80 +19,25 @@ public var right : int;
 public var up : int;
 public var down : int;
 
+// lists
+var enemyList : GameObject[];
+
 function Start () {
 	// set initial values
 	left = 0;
 	right = 0;
 	up = 1;
 	down = 0;
+	
+	// initilize lists
+	enemyList = GameObject.FindGameObjectsWithTag('Enemy') as GameObject[];
 }
 
 function Update () {	
-	/* OLD MOVE STYLE
-	//     MOVE X
-	// uses a raycast 1/2 the width of the sprite and checks for collisions.  If returns false, create a vector in that direction
-	// right
-	if (Input.GetAxis("Horizontal") > 0){
-		if (!Physics2D.Raycast(transform.position+Vector2(0,0),Vector2(1,0),.55) && !Physics2D.Raycast(transform.position+Vector2(0,-.5),Vector2(1,0),.55)){
-			transform.Translate(Vector2(1 * speed * Time.deltaTime,0));
-		} else DetectCollision();
-		
-		// update directional variables
-		right = 1;
-		left = 0;
-		
-		// turn sprite
-		renderer.material.mainTextureScale = new Vector2(1,-1);
-	}
-	
-	// left
-	if (Input.GetAxis("Horizontal") < 0){
-		if (!Physics2D.Raycast(transform.position+Vector2(0,0),Vector2(-1,0),.55) && !Physics2D.Raycast(transform.position+Vector2(0,-.5),Vector2(-1,0),.55)){
-			transform.Translate(Vector2(-1 * speed * Time.deltaTime,0));
-		} else DetectCollision();
-		
-		// update directional variables
-		left = 1;
-		right = 0;
-		
-		// turn sprite 
-		renderer.material.mainTextureScale = new Vector2(-1,-1);
-	}
-	
-	//     MOVE Y
-	// up
-	if (Input.GetAxis("Vertical") > 0){
-		if (!Physics2D.Raycast(transform.position+Vector2(.5,-.5),Vector2(0,1),.55) && !Physics2D.Raycast(transform.position+Vector2(-.5,-.5),Vector2(0,1),.55)){
-			transform.Translate(Vector2(0,1 * speed * Time.deltaTime));
-		} else DetectCollision();
-		
-		// update directional variables
-		up = 1;
-		down = 0;
-	}
-	
-	// down
-	if (Input.GetAxis("Vertical") < 0){
-		if (!Physics2D.Raycast(transform.position+Vector2(.5,0),Vector2(0,-1),.55) && !Physics2D.Raycast(transform.position+Vector2(-.5,0),Vector2(0,-1),.55)){
-			transform.Translate(Vector2(0,-1 * speed * Time.deltaTime));
-		} else DetectCollision();
-		
-		// update directional variables
-		down = 1;
-		up = 0;
-	}
-	
-	// the following methods ensure that there is no way for all directional values to be zero, which would prevent bullets from being shot.
-	// these methods also prevent bullets from always being shot out of the corners of the player.
-	if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") != 0) {
-		left = 0;
-		right = 0;
-	}
-	
 	if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") != 0){
 		up = 0;
 		down = 0;
-	} */
+	}
 	
 	// Cache the horizontal input.
 		var h : float = Input.GetAxis("Horizontal");
@@ -125,14 +76,6 @@ function Update () {
 			right = 0;
 		}
 
-		// If the input is moving the player right and the player is facing left...
-		/*if(h > 0 && !facingRight)
-			// ... flip the player.
-			Flip();
-		// Otherwise if the input is moving the player left and the player is facing right...
-		else if(h < 0 && facingRight)
-			// ... flip the player.
-			Flip();*/
 	// Cache the vertical input.
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		//anim.SetFloat("Speed", Mathf.Abs(h));
@@ -179,8 +122,14 @@ function Update () {
 		}
 	}
 	
+	// use skills
+	if (Input.GetAxis("Skill1") > 0) {
+		Debug.Log("Firing");
+		FireAreaDamage();
+	}
 }
 
+/*
 function DetectCollision(){
 	// this is for debugging purposes
 	switch(System.Convert.ToInt32(Random.Range(0,4))){
@@ -199,6 +148,25 @@ function DetectCollision(){
 		case 3:
 		Debug.Log("Wow");
 		break;
+	}
+	
+}*/
+
+function FireAreaDamage(){
+	// do AOE damage
+	enemyList = GameObject.FindGameObjectsWithTag('Enemy') as GameObject[];
+	
+	// run through enemy array
+	for(var i : int = 0; i < enemyList.length; i++){
+		//Debug.Log("Enemy " + i);
+		if (Vector2.Distance(transform.position, enemyList[i].transform.position) < range) {
+			//Debug.Log("I am here!");
+			// do damage to enemy
+			if (attack + Random.Range(0,4) > enemyList[i].GetComponent(scr_Enemy).armor){
+				// decrease health
+				enemyList[i].GetComponent(scr_Enemy).currentHealth -= damage + Random.Range(0,2);
+			}
+		}
 	}
 	
 }

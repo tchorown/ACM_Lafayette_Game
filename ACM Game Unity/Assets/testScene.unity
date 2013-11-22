@@ -149,7 +149,7 @@ MonoBehaviour:
   reloadAndCommit: 0
   BleedingOffset: .00650000013
   _cameraOrthoSize: 1.35699999
-  _targetSize: 909
+  _targetSize: 480
   _layerZ: -1
   _generateMeshCollider: 1
   _tiledXMLFile: {fileID: 4900000, guid: f9714d5be3530c3489f4c029e2837331, type: 3}
@@ -495,10 +495,17 @@ MonoBehaviour:
   fireRate: .5
   nextShot: 0
   moveForce: 100
+  range: 2
+  attack: 4
+  attackSpeed: 3
+  damage: 5
+  armor: 7
+  vision: 5
   left: 0
   right: 0
   up: 1
   down: 0
+  enemyList: []
 --- !u!114 &135259679
 MonoBehaviour:
   m_ObjectHideFlags: 0
