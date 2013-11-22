@@ -12,6 +12,7 @@ var xSpeed : int; // how fast the object moves in the x direction
 var ySpeed : int; // how fast the object moves in the y direction
 
 var bulletScript : scr_Bullet; // the script of the bullet
+var pathfindingScript : scr_Pathfinding;
 
 function Start () {
 	// set health
@@ -38,28 +39,30 @@ function Start () {
 }
 
 function Update () {
-	// check for collisions
-	// check x
-	if (reverseX()) {
-		xSpeed = -xSpeed;
-	}
-	// check y
-	if (reverseY()){
-		ySpeed = -ySpeed;
-	}
-	// move
-	transform.Translate(Vector2(xSpeed * Time.deltaTime,ySpeed * Time.deltaTime));
-	
-	
-	// die if health is below 1
-	if (currentHealth <= 0) {
-		Destroy(gameObject);
-	}
-	
+
 	// check to see if player is in vision
 	Debug.Log(checkDistanceToPlayer());
 	if (checkDistanceToPlayer() < vision) {
 		Debug.Log("I see you");
+		dumbPathfinding(GameObject.Find("obj_Player"));
+	}
+	else{
+	// check for collisions
+	// check x
+		if (reverseX()) {
+			xSpeed = -xSpeed;
+		}
+		// check y
+		else if (reverseY()){
+			ySpeed = -ySpeed;
+		}
+		// move
+		transform.Translate(Vector2(xSpeed * Time.deltaTime,ySpeed * Time.deltaTime));
+	}
+		
+		// die if health is below 1
+	if (currentHealth <= 0) {
+		Destroy(gameObject);
 	}
 }
 
@@ -110,4 +113,38 @@ function OnCollisionEnter2D(col : Collision2D){
 // checks how far away the player is from this actor
 function checkDistanceToPlayer(){
 	return Vector2.Distance(transform.position, GameObject.Find("obj_Player").transform.position);
+}
+
+
+function getVision()
+{
+	return moveSpeed;
+}
+//pathfinding for enemies, by no means optimal at the moment
+//current issues:
+//	they collide with the player and the player alone, walls do not stop these badass motherfuckers
+//  their movement disregards their set moveSpeed
+function dumbPathfinding(target:GameObject)
+{
+	var direction:Vector3 = transform.position - target.transform.position;
+	var x:double = direction.x;
+	var y:double = direction.y;
+	
+	var upHit:boolean = Physics2D.Raycast(transform.position, Vector2.up);
+	var downHit:boolean = Physics2D.Raycast(transform.position, -Vector2.up);
+	var leftHit:boolean = Physics2D.Raycast(transform.position, -Vector2.right);
+	var rightHit:boolean = Physics2D.Raycast(transform.position, Vector2.right);
+	
+	if(upHit||downHit){
+	transform.Translate(Vector2(-x*Time.deltaTime,0*Time.deltaTime));
+	}
+	
+	if(leftHit||rightHit){
+	transform.Translate(Vector2(0*Time.deltaTime,-y*Time.deltaTime));
+	}
+	
+	else{
+	transform.Translate(Vector2(-x*Time.deltaTime,-y*Time.deltaTime));
+	}
+	
 }

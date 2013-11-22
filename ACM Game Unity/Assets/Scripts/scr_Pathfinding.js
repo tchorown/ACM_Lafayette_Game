@@ -1,22 +1,17 @@
 ﻿#pragma strict
-// A script that subdivides the play area
-private var gameWidth : double;
-private var gameHeight : double;
-function Start () 
+// A script that subdivides the play area and lets enemies pathfind
+//eventually will be used for A* pathfinding
+//private var gameWidth : double;
+//private var gameHeight : double;
+var player:GameObject;
+var enemy:GameObject;
+var enemyVision :int;
+var enemySource : scr_Enemy;
+/*function Start () 
 {
-	//get width and height of map
-	gameWidth = GameObject.Find("obj_Player").renderer.bounds.max.x;
-	gameHeight = GameObject.Find("obj_Player").renderer.bounds.max.y;
-	//create grid overlay
-	for(var i:int = 0; i<gameWidth; i++)
-	{
-		for(var j:int = 0; j<gameHeight; j++)
-		{
-			
-		}
-	}
-	//calculate path
-	//return the path
+	enemy = getComponent("obj_Enemy"); 
+	enemyVision = enemySource.getVision();
+	player = getComponent("obj_Player");
 
 }
 
@@ -24,3 +19,9 @@ function Update ()
 {
 
 }
+//until there is a better way to determine if a point is walkable
+function dumbPathfinding(target:GameObject, sourceSpeed:int)
+{
+	
+}*/
+		
