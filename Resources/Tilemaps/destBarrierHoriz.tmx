@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="4" height="5" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="complete_cell_wallset" tilewidth="64" tileheight="64">
+  <image source="../complete_cell_wallset.png" trans="1eda02" width="192" height="320"/>
+ </tileset>
+ <tileset firstgid="16" name="cellTexture0000" tilewidth="64" tileheight="64">
+  <image source="../cellTexture0000.png" trans="1eda02" width="64" height="64"/>
+ </tileset>
+ <layer name="Ground" width="4" height="5">
+  <data encoding="base64" compression="zlib">
+   eJwTYGBgEEDClAIAEtAAQQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="4" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYELCHGiYmwDmQ8MAF8AAuQ==
+  </data>
+ </layer>
+</map>

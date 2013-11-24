@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\scr_Bullet.js" />
      <Compile Include="Assets\Scripts\scr_CameraFollow.js" />
      <Compile Include="Assets\Scripts\scr_ColorMat.js" />
+     <Compile Include="Assets\Scripts\scr_DestructableObject.js" />
      <Compile Include="Assets\Scripts\scr_Enemy.js" />
      <Compile Include="Assets\Scripts\scr_FitMaterial.js" />
      <Compile Include="Assets\Scripts\scr_FloorScript.js" />
