@@ -10,3 +10,6 @@ game_Data/
 # userprefs file just specifies which files are open/active in MonoDevelop.
 *.userprefs
 UnityLockFile
+
+# stuff for the collision map generator
+*.class

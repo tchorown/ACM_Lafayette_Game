@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="terrain_atlas.tsx"/>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztllEKwjAMQNP9eIR5AvUG8wQ6T7AbOD3BjmChB/CIegwTMBBLB2sZCUg/HoVsy0tK6TIBwFTIrgHYCw5Nea4STug7CzbKdVzRMyJv91tHr7wPXAdzK/C3yBPZKtYt6ZABORr5K5XKMlqwuyeIDuo98Y/E84T2TBHPEy9X9i9dy689R1j715hjKssY6Ww7O/8D3d7IT71fkGDgl27t/tntv2j1z2eN+w6if4rfM+rgXDnEXukn+sxccv98Apk/RLEl36Seza1zfcVr6n2KfQB6ldO8
+  </data>
+ </layer>
+ <layer name="Maps" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlEEOgjAUREt6HDmFWz0JeAl1Q8ALqCt0p15AXYmnUC/jJ2njdwJCm6KS9CUTCE2Zn2GoEP9FFAgRkybBb/xT8k1Ii+A1SwwzdTGjfudY+Y/YfalMzYQzuiJlPkmNtN+OrnvSwaG/fidXqHwH4NeU/1QKMQPNpflMKeTe9Fyzke/aKplSlXMEHcFuluTKdwgzuED3hHcFs8iZZ6F0dejPfbEbJRfwXNLairQ27Cvu49ln7Bs0nQNHWj+Rzob+uI9nX3Uu1HGj9TvpYeiP+3Qfww/Zf4Muzp++Y9txV9h23BW2Hfe0x3esXcd8Tv5f9Hj6wBNlqmiM
+  </data>
+ </layer>
+</map>

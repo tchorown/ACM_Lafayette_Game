@@ -11,6 +11,7 @@ public class loadCollisions : MonoBehaviour
 	 */
 	public Transform collisionBoxPrefab;
 	public TextAsset collisionFile;
+	public float tileSize;	// Length of a tile in units.
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +38,10 @@ public class loadCollisions : MonoBehaviour
 			{
 				string line = lines[i];
 				string[] coordinates = line.Split (' ');
-				Vector3 transform = new Vector3(System.Convert.ToSingle(coordinates[0]), System.Convert.ToSingle(coordinates[1]), 0);
-				Instantiate(collisionBoxPrefab, transform, Quaternion.identity);
+				Vector3 transform = new Vector3(System.Convert.ToSingle(coordinates[0]) * tileSize, System.Convert.ToSingle(coordinates[1]) * tileSize, 0);
+				//GameObject box = (GameObject) Instantiate(collisionBoxPrefab, transform, Quaternion.identity);
+				( (Transform) Instantiate(collisionBoxPrefab, transform + this.gameObject.transform.position, Quaternion.identity)).parent = this.gameObject.transform;
+				//box.transform.parent = this.gameObject.transform;
 			}
 			return true;
 		}
