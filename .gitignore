@@ -1,10 +1,12 @@
 [Tt]emp/
 [Oo]bj/
 [Ll]ibrary/
+game_Data/
 
 *.csproj
 *.unityproj
 *.sln
+*.exe
 # userprefs file just specifies which files are open/active in MonoDevelop.
 *.userprefs
 UnityLockFile
