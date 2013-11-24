@@ -501,6 +501,8 @@ MonoBehaviour:
   damage: 5
   armor: 7
   vision: 5
+  fireAoeMax: 50
+  fireAoeCounter: 0
   left: 0
   right: 0
   up: 1

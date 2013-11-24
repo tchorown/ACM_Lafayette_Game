@@ -13,6 +13,10 @@ var damage : int; // the ammount of damage done by this actor
 var armor : int; // resistance to damage
 var vision : int; // how far this actor can see
 
+// skill counters
+var fireAoeMax : int; // time in between AOE skills
+var fireAoeCounter: int; // countdown to recharge skill
+
 // for determining the direction of a bullet
 public var left : int;
 public var right : int;
@@ -31,9 +35,15 @@ function Start () {
 	
 	// initilize lists
 	enemyList = GameObject.FindGameObjectsWithTag('Enemy') as GameObject[];
+	
+	// skill counters
+	fireAoeCounter = fireAoeMax;
 }
 
-function Update () {	
+function Update () {
+	// run clock
+	Clock();
+		
 	if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") != 0){
 		up = 0;
 		down = 0;
@@ -124,8 +134,40 @@ function Update () {
 	
 	// use skills
 	if (Input.GetAxis("Skill1") > 0) {
-		Debug.Log("Firing");
 		FireAreaDamage();
+	}
+}
+
+function FireAreaDamage(){
+		if (fireAoeCounter <= 0) {
+		// increase counter to max
+		fireAoeCounter = fireAoeMax;
+		
+		Debug.Log("AOE Attack");
+		
+		// do AOE damage
+		enemyList = GameObject.FindGameObjectsWithTag('Enemy') as GameObject[];
+		
+		// run through enemy array
+		for(var i : int = 0; i < enemyList.length; i++){
+			//Debug.Log("Enemy " + i);
+			if (Vector2.Distance(transform.position, enemyList[i].transform.position) < range) {
+				//Debug.Log("I am here!");
+				// do damage to enemy
+				if (attack + Random.Range(0,4) > enemyList[i].GetComponent(scr_Enemy).armor){
+					// decrease health
+					enemyList[i].GetComponent(scr_Enemy).currentHealth -= damage + Random.Range(0,2);
+				}
+			}
+		}
+	}
+}
+
+
+function Clock(){
+	// fire AOE
+	if (fireAoeCounter > 0) {
+		fireAoeCounter--;
 	}
 }
 
@@ -151,22 +193,3 @@ function DetectCollision(){
 	}
 	
 }*/
-
-function FireAreaDamage(){
-	// do AOE damage
-	enemyList = GameObject.FindGameObjectsWithTag('Enemy') as GameObject[];
-	
-	// run through enemy array
-	for(var i : int = 0; i < enemyList.length; i++){
-		//Debug.Log("Enemy " + i);
-		if (Vector2.Distance(transform.position, enemyList[i].transform.position) < range) {
-			//Debug.Log("I am here!");
-			// do damage to enemy
-			if (attack + Random.Range(0,4) > enemyList[i].GetComponent(scr_Enemy).armor){
-				// decrease health
-				enemyList[i].GetComponent(scr_Enemy).currentHealth -= damage + Random.Range(0,2);
-			}
-		}
-	}
-	
-}
