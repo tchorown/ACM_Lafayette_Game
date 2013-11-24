@@ -34,7 +34,7 @@ function Update () {
 
 // destroy on collision
 function OnCollisionEnter2D(col : Collision2D){
-	Debug.Log("Much bullets very collide!");
+	//Debug.Log("Much bullets very collide!");
 	// save the collision
 	collided_with = col.gameObject;
 	

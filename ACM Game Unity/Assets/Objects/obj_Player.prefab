@@ -62,10 +62,19 @@ MonoBehaviour:
   fireRate: .5
   nextShot: 0
   moveForce: 100
+  range: 2
+  attack: 4
+  attackSpeed: 3
+  damage: 5
+  armor: 7
+  vision: 5
+  fireAoeMax: 50
+  fireAoeCounter: 0
   left: 0
   right: 0
   up: 1
   down: 0
+  enemyList: []
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

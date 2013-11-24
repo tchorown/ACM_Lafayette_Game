@@ -248,7 +248,7 @@ GameObject:
   - 50: {fileID: 66494893}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,6 +500,7 @@ Transform:
   m_LocalPosition: {x: -2.91498709, y: 1.97135317, z: 0}
   m_LocalScale: {x: 1, y: 1, z: .100000001}
   m_Children:
+  - {fileID: 861969679}
   - {fileID: 1230072384}
   m_Father: {fileID: 0}
 --- !u!114 &135259678
@@ -520,10 +521,19 @@ MonoBehaviour:
   fireRate: .5
   nextShot: 0
   moveForce: 100
+  range: 2
+  attack: 4
+  attackSpeed: 3
+  damage: 5
+  armor: 7
+  vision: 5
+  fireAoeMax: 50
+  fireAoeCounter: 0
   left: 0
   right: 0
   up: 1
   down: 0
+  enemyList: []
 --- !u!114 &135259679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +599,52 @@ Prefab:
   m_RootGameObject: {fileID: 1743812368}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &224909879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 224909881}
+  - 131: {fileID: 224909880}
+  m_Layer: 0
+  m_Name: gui_HealthBG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!131 &224909880
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 224909879}
+  m_Enabled: 1
+  m_Texture: {fileID: 0}
+  m_Color: {r: .380392164, g: .380392164, b: .380392164, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: -200
+    y: -150
+    width: 500
+    height: 212
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
+--- !u!4 &224909881
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 224909879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.25, y: 3, z: 4}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1647568618}
 --- !u!1 &272986279
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +749,7 @@ GameObject:
   - 50: {fileID: 404497713}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -965,7 +1021,7 @@ GameObject:
   - 50: {fileID: 532157659}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1605,7 +1661,7 @@ GameObject:
   - 50: {fileID: 1242325893}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1712,7 +1768,7 @@ GameObject:
   - 50: {fileID: 1256926741}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1819,7 +1875,7 @@ GameObject:
   - 50: {fileID: 1258086284}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2224,6 +2280,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4191cf7505054249870b96264ae802a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1448213856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1448213857}
+  - 132: {fileID: 1448213858}
+  m_Layer: 0
+  m_Name: gui_Health
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448213857
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1448213856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.25, y: 3, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1647568618}
+--- !u!132 &1448213858
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1448213856}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Text: Health
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 50
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1001 &1469038610
 Prefab:
   m_ObjectHideFlags: 0
@@ -2635,6 +2741,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 135259672}
   zpos: -5
+--- !u!21 &1615115631
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Tileset Cell
+  m_Shader: {fileID: 10751, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 928ffa86956b66a4a915b98f1cabca4d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+    m_Colors: {}
+--- !u!1 &1647568617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1647568618}
+  m_Layer: 0
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1647568618
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647568617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.75, y: -2.5, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1448213857}
+  - {fileID: 224909881}
+  m_Father: {fileID: 0}
 --- !u!1001 &1680006941
 Prefab:
   m_ObjectHideFlags: 0
@@ -2911,7 +3071,7 @@ GameObject:
   - 50: {fileID: 1853961019}
   m_Layer: 0
   m_Name: obj_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

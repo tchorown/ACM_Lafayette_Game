@@ -41,9 +41,9 @@ function Start () {
 function Update () {
 
 	// check to see if player is in vision
-	Debug.Log(checkDistanceToPlayer());
+	//Debug.Log(checkDistanceToPlayer());
 	if (checkDistanceToPlayer() < vision) {
-		Debug.Log("I see you");
+		//Debug.Log("I see you");
 		dumbPathfinding(GameObject.Find("obj_Player"));
 	}
 	else{
