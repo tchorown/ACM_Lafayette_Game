@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e131afeb2b36ac4d9bad82e0601a786
+guid: aae6a2dc895773949bbff1b85361ffb9
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -40,33 +40,6 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: BackLeft_0
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 136
-        width: 107
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: BackLeft_1
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 136
-        width: 109
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: BackLeft_2
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 8
-        width: 107
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
