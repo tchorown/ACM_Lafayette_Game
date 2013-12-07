@@ -26,6 +26,9 @@ public var down : int;
 // lists
 var enemyList : GameObject[];
 
+// components
+var animator : Animator;
+
 function Start () {
 	// set initial values
 	left = 0;
@@ -38,12 +41,18 @@ function Start () {
 	
 	// skill counters
 	fireAoeCounter = fireAoeMax;
+	
+	// save reference to animator
+	animator = GetComponent(Animator);
 }
 
 function Update () {
 	// run clock
 	Clock();
-		
+	
+	// change animation	
+	ChangeSpriteDirection();
+	
 	if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") != 0){
 		up = 0;
 		down = 0;
@@ -169,6 +178,22 @@ function Clock(){
 	if (fireAoeCounter > 0) {
 		fireAoeCounter--;
 	}
+}
+
+// send values into animator
+function ChangeSpriteDirection(){
+	// right
+	animator.SetInteger("right", right);
+	
+	// left
+	animator.SetInteger("left", left);
+	
+	// up
+	animator.SetInteger("up", up);
+	
+	// down
+	animator.SetInteger("down", down);
+	
 }
 
 /*
