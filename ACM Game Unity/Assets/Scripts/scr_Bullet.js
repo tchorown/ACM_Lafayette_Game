@@ -64,4 +64,8 @@ function OnTriggerEnter2D(col : Collider2D){
 		// destroy self
 		Destroy(gameObject);
 	}
+	
+	if (collided_with.tag == "Enemy") {
+		collided_with.GetComponent(scr_Enemy).hitByBullet(this.gameObject);
+	}
 }

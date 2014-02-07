@@ -10,7 +10,11 @@ var attackSpeed : int;
 var damage : int; // the ammount of damage done by this actor
 var armor : int; // resistance to damage
 var vision : int; // how far this actor can see
+
+var countText : GUIText;
+
 enum Targeting { Keyboard, Point, RTS } // targeting types
+internal var killCount : int; // temporary counter to add some fluff to the UI
 internal var targetType : Targeting; // the current targeting type being used
 internal var targetPosition : Vector2; // the position of the player's target or cursor
 
@@ -30,6 +34,10 @@ function Start () {
 	
 	// skill counters
 	fireAoeCounter = fireAoeMax;
+	
+	// kill count
+	killCount = 0;
+	countText.text = "Kills: " + killCount.ToString();
 
 }
 

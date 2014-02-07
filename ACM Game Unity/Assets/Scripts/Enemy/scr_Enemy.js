@@ -1,15 +1,17 @@
 ﻿#pragma strict
-var collided_with : GameObject; // detects collisions
+
 var maxHealth : int; // start health
-var currentHealth : int; // current health
 var moveSpeed : int; // general movement speed
 var attackSpeed : int; // time in between attacks
 var damage : int; // the ammount of damage done by this actor
 var armor : int; // resistance to damage
 var range : int; // the range of bullets
 var vision : int; // how far this actor can see
-var xSpeed : int; // how fast the object moves in the x direction
-var ySpeed : int; // how fast the object moves in the y direction
+var playerScript : scr_Player;
+internal var xSpeed : int; // how fast the object moves in the x direction
+internal var ySpeed : int; // how fast the object moves in the y direction
+internal var currentHealth : int; // current health
+internal var collided_with : GameObject; // detects collisions
 
 var bulletScript : scr_Bullet; // the script of the bullet
 var pathfindingScript : scr_Pathfinding;
@@ -17,6 +19,9 @@ var pathfindingScript : scr_Pathfinding;
 function Start () {
 	// set health
 	currentHealth = maxHealth;
+	
+	// find the player
+	playerScript = GameObject.Find("obj_Player").GetComponent(scr_Player);
 	
 	// randomly generate speeds
 	switch(System.Convert.ToInt32(Random.Range(0,2))) {
@@ -62,6 +67,9 @@ function Update () {
 		
 		// die if health is below 1
 	if (currentHealth <= 0) {
+		playerScript.killCount++;
+		print(playerScript.killCount);
+		playerScript.countText.text = "Kills: " + playerScript.killCount.ToString();
 		Destroy(gameObject);
 	}
 }
@@ -82,32 +90,17 @@ function reverseY(){
 	} else return false;
 }
 
-function OnCollisionEnter2D(col : Collision2D){
-	// save the collision
-	collided_with = col.gameObject;
-	
-	// read tag of collision
-	switch (collided_with.tag) {
-		case "Projectile" :
-			bulletScript = collided_with.GetComponent(scr_Bullet);
-			
-			// calculate a hit or miss by checking to see if the bullet comes from the player AND it gets past the armor raiting
-			if (bulletScript.attack + Random.Range(0,4) > armor && bulletScript.damageSource == Source.Player){
-				// decrease health
-				currentHealth -= bulletScript.damage + Random.Range(0,2);
-			}
-			
-			// destroy bullet
-			Destroy(collided_with);
-			break;
-	
-		/*case "FullCollision":
-			// reverses speed
-			xSpeed = -xSpeed;
-			ySpeed = -ySpeed;
-			Debug.Log("Such detected");
-			break;*/
+function hitByBullet(bullet : GameObject){
+	bulletScript = bullet.GetComponent(scr_Bullet);
+		
+	// calculate a hit or miss by checking to see if the bullet comes from the player AND it gets past the armor raiting
+	if (bulletScript.attack + Random.Range(0,4) > armor && bulletScript.damageSource == Source.Player){
+		// decrease health
+		currentHealth -= bulletScript.damage + Random.Range(0,2);
 	}
+	
+	// destroy bullet
+	Destroy(bullet);
 }
 
 // checks how far away the player is from this actor

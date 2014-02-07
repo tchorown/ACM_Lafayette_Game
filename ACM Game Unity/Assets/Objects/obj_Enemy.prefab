@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   - 212: {fileID: 21200000}
   - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
@@ -67,19 +68,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3e1c06bb949e44d82565627156c0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collided_with: {fileID: 0}
   maxHealth: 10
-  currentHealth: 0
   moveSpeed: 1
   attackSpeed: 0
   damage: 3
   armor: 5
   range: 6
   vision: 3
-  xSpeed: 0
-  ySpeed: 0
   bulletScript: {fileID: 0}
   pathfindingScript: {fileID: 0}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29183a5e2b10cb46ae28c928bedeaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
