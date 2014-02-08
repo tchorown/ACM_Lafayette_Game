@@ -9,11 +9,12 @@ var damage : int; // damage of bullet
 var player : GameObject;
 var playerScript : scr_Player;
 var playerMoveScript : scr_PlayerMove;
-var collided_with : GameObject; // detects collisions
 var horizDir : int;
 var vertDir : int;
 var moveVector : Vector2;
 var targetAngle : float;
+
+internal var collided_with : GameObject; // detects collisions
 
 function Start (){
 	// access the player's script

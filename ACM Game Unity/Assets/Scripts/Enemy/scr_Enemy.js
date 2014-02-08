@@ -69,7 +69,7 @@ function Update () {
 	if (currentHealth <= 0) {
 		playerScript.killCount++;
 		print(playerScript.killCount);
-		playerScript.countText.text = "Kills: " + playerScript.killCount.ToString();
+		playerScript.updateGUI();
 		Destroy(gameObject);
 	}
 }

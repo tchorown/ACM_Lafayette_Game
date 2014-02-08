@@ -10,8 +10,11 @@ var attackSpeed : int;
 var damage : int; // the ammount of damage done by this actor
 var armor : int; // resistance to damage
 var vision : int; // how far this actor can see
+var ammo : int; // ammo
 
 var countText : GUIText;
+var gui_Health : GUIText;
+var gui_Ammo : GUIText;
 
 enum Targeting { Keyboard, Point, RTS } // targeting types
 internal var killCount : int; // temporary counter to add some fluff to the UI
@@ -37,7 +40,9 @@ function Start () {
 	
 	// kill count
 	killCount = 0;
-	countText.text = "Kills: " + killCount.ToString();
+	
+	// set up GUI
+	updateGUI();
 
 }
 
@@ -46,7 +51,7 @@ function Update () {
 	Clock();
 	
 	// shoot
-	if (Input.GetButtonDown("FireBullet")){
+	if (Input.GetButton("FireBullet")){
 		Fire();
 	}
 	
@@ -112,7 +117,7 @@ function Clock(){
 }
 
 function Fire(){
- 	if (Time.time >= nextShot){
+ 	if (Time.time >= nextShot && ammo > 0){
  	
  		// create an instance of the bullet
  		if (targetType == Targeting.Keyboard) {
@@ -124,28 +129,14 @@ function Fire(){
  		}
  		// prevent the player from firing again immediately
  		nextShot = Time.time + fireRate;
+ 		
+ 		ammo--; // subtract ammo
+ 		updateGUI();
 	}
 }
 
-/*
-function DetectCollision(){
-	// this is for debugging purposes
-	switch(System.Convert.ToInt32(Random.Range(0,4))){
-		case 0:
-		Debug.Log("Such collision");
-		break;
-		
-		case 1:
-		Debug.Log("Much fizziks");
-		break;
-		
-		case 2:
-		Debug.Log("Stopped doge");
-		break;
-		
-		case 3:
-		Debug.Log("Wow");
-		break;
-	}
-	
-}*/
+function updateGUI(){
+	countText.text = "Kills: " + killCount.ToString();
+	gui_Ammo.text = "Ammo: " + ammo.ToString();
+	gui_Health.text = "Health: " + health.ToString();
+}
