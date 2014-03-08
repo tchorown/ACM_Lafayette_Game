@@ -1,0 +1,4 @@
+Save the map file as "CollisionMapGenerator-android/assets/data/TileMap(base64).xml"
+	make sure it's base64 encoded, with no compression
+
+Collision file is saved as "CollisionMapGenerator-desktop/Collisions.physicsmap"
